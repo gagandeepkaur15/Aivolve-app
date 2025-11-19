@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1069271823160",
+    "project_id": "aivolve-1378e",
+    "storage_bucket": "aivolve-1378e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069271823160:android:fc3f780f646e8eaffd47cd",
+        "android_client_info": {
+          "package_name": "com.example.aivolve"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbj4Yx2-FUHeoI8xy_k0t76VcFAEkVJkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
