@@ -1,3 +1,4 @@
+import 'package:aivolve/core/constants/theme/aivolve_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/routing/app_router.dart';
@@ -20,7 +21,7 @@ class AivolveApp extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      theme: ThemeData(useMaterial3: true),
+      theme: AivolveTheme.darkTheme,
     );
   }
 }

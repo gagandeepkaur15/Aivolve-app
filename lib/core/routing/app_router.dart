@@ -13,7 +13,6 @@ import 'package:go_router/go_router.dart';
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {
     _subscription = stream.asBroadcastStream().listen((_) {
-      // Notify GoRouter to re-run redirect logic.
       notifyListeners();
     });
   }
@@ -31,32 +30,56 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: AppRoutes.splash,
     refreshListenable: GoRouterRefreshStream(
-      ref.watch(authRepositoryProvider).authState,
+      ref.watch(authStateProvider).when(
+        data: (_) => Stream.value(null),
+        loading: () => Stream.value(null),
+        error: (_, __) => Stream.value(null),
+      ),
     ),
     redirect: (context, state) {
-      final user = ref.read(authStateProvider).value;
+      final authState = ref.watch(authStateProvider);
       final currentPath = state.uri.toString();
 
-      /// Auth is loading -> stay on splash
-      if (ref.read(authStateProvider).isLoading) {
-        return AppRoutes.splash;
+      // Routes that do NOT require login
+      final publicRoutes = [
+        AppRoutes.login,
+        AppRoutes.signUp,
+        AppRoutes.splash,
+      ];
+
+      // While auth state is still loading, stay on splash screen
+      if (authState.isLoading) {
+        if (currentPath != AppRoutes.splash) {
+          return AppRoutes.splash;
+        }
+        return null;
       }
 
-      // Allow access to login and sign up routes when not logged in
-      final publicRoutes = [AppRoutes.login, AppRoutes.signUp];
+      // If there was an error loading auth state, go to login
+      if (authState.hasError) {
+        return AppRoutes.login;
+      }
 
-      // User not logged in → redirect to login (except for public routes)
+      final user = authState.value;
+
+      // Auth has finished loading with no user → redirect to login (unless already there)
+      if (user == null && currentPath == AppRoutes.splash) {
+        return AppRoutes.login;
+      }
+
+      // If user is NOT logged in → block protected routes
       if (user == null && !publicRoutes.contains(currentPath)) {
         return AppRoutes.login;
       }
 
-      // User logged in → prevent going back to login/sign up
+      // If user IS logged in → prevent access to login/splash/sign-up
       if (user != null && publicRoutes.contains(currentPath)) {
         return AppRoutes.home;
       }
 
       return null;
     },
+
     routes: [
       GoRoute(
         path: AppRoutes.splash,
