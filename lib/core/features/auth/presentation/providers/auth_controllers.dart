@@ -53,12 +53,33 @@ class SignUpController extends _$SignUpController {
   @override
   FutureOr<void> build() {}
 
-  Future<void> signUp(String email, String password) async {
+  Future<void> signUp(
+    String firstName,
+    String lastName,
+    String email,
+    String password,
+  ) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final repository = ref.read(authRepositoryProvider);
-      await repository.register(email, password);
+      await repository.register(firstName, lastName, email, password);
       // Navigation is handled by router redirect logic based on auth state
+    });
+  }
+}
+
+@riverpod
+class OnboardingController extends _$OnboardingController {
+  @override
+  FutureOr<void> build() {}
+
+  Future<void> submitAnswers(Map<String, dynamic> answers) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      final repo = ref.read(authRepositoryProvider);
+      final auth = ref.read(firebaseAuthProvider);
+      final uid = auth.currentUser!.uid;
+      await repo.completeOnboarding(uid, answers);
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 
 class AivolveTheme {
@@ -10,12 +11,12 @@ class AivolveTheme {
       filled: true,
       fillColor: AivolveColors.fieldFill,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.sp),
         borderSide: BorderSide.none,
       ),
       hintStyle: TextStyle(color: AivolveColors.textSecondary),
       labelStyle: TextStyle(color: AivolveColors.textSecondary),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
     ),
   );
 }
