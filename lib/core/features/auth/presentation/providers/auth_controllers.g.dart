@@ -185,7 +185,7 @@ final class SignUpControllerProvider
   SignUpController create() => SignUpController();
 }
 
-String _$signUpControllerHash() => r'00efe49db6d2b051b7df0ac34fc8d6e157901912';
+String _$signUpControllerHash() => r'9d5f483662c432980ee41d8356b1c45bc5b300ac';
 
 /// ---------------------------------------------------------------------------
 ///  Sign Up Controller (Presentation Layer)
@@ -204,6 +204,52 @@ String _$signUpControllerHash() => r'00efe49db6d2b051b7df0ac34fc8d6e157901912';
 /// ---------------------------------------------------------------------------
 
 abstract class _$SignUpController extends $AsyncNotifier<void> {
+  FutureOr<void> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    build();
+    final ref = this.ref as $Ref<AsyncValue<void>, void>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<void>, void>,
+              AsyncValue<void>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, null);
+  }
+}
+
+@ProviderFor(OnboardingController)
+const onboardingControllerProvider = OnboardingControllerProvider._();
+
+final class OnboardingControllerProvider
+    extends $AsyncNotifierProvider<OnboardingController, void> {
+  const OnboardingControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'onboardingControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$onboardingControllerHash();
+
+  @$internal
+  @override
+  OnboardingController create() => OnboardingController();
+}
+
+String _$onboardingControllerHash() =>
+    r'3450c765b8f8bff0e53eec8179f5f94acff0732f';
+
+abstract class _$OnboardingController extends $AsyncNotifier<void> {
   FutureOr<void> build();
   @$mustCallSuper
   @override

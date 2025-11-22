@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:aivolve/core/features/auth/presentation/providers/auth_providers.dart';
 import 'package:aivolve/core/features/auth/presentation/screens/login_screen.dart';
+import 'package:aivolve/core/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:aivolve/core/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:aivolve/core/features/home/presentation/screens/home_screen.dart';
 import 'package:aivolve/core/features/splash/presentation/screens/splash.dart';
@@ -30,11 +31,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: AppRoutes.splash,
     refreshListenable: GoRouterRefreshStream(
-      ref.watch(authStateProvider).when(
-        data: (_) => Stream.value(null),
-        loading: () => Stream.value(null),
-        error: (_, __) => Stream.value(null),
-      ),
+      ref
+          .watch(authStateProvider)
+          .when(
+            data: (_) => Stream.value(null),
+            loading: () => Stream.value(null),
+            error: (_, __) => Stream.value(null),
+          ),
     ),
     redirect: (context, state) {
       final authState = ref.watch(authStateProvider);
@@ -74,28 +77,20 @@ final appRouterProvider = Provider<GoRouter>((ref) {
 
       // If user IS logged in → prevent access to login/splash/sign-up
       if (user != null && publicRoutes.contains(currentPath)) {
-        return AppRoutes.home;
+        return AppRoutes.onboarding;
       }
 
       return null;
     },
 
     routes: [
+      GoRoute(path: AppRoutes.splash, builder: (_, __) => const SplashScreen()),
+      GoRoute(path: AppRoutes.login, builder: (_, __) => const LoginScreen()),
+      GoRoute(path: AppRoutes.signUp, builder: (_, __) => const SignUpScreen()),
+      GoRoute(path: AppRoutes.home, builder: (_, __) => const HomeScreen()),
       GoRoute(
-        path: AppRoutes.splash,
-        builder: (_, __) => const SplashScreen(),
-      ),
-      GoRoute(
-        path: AppRoutes.login,
-        builder: (_, __) => const LoginScreen(),
-      ),
-      GoRoute(
-        path: AppRoutes.signUp,
-        builder: (_, __) => const SignUpScreen(),
-      ),
-      GoRoute(
-        path: AppRoutes.home,
-        builder: (_, __) => const HomeScreen(),
+        path: AppRoutes.onboarding,
+        builder: (_, __) => const AivolveOnboarding(),
       ),
     ],
   );
