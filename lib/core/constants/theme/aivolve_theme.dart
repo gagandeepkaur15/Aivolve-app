@@ -5,7 +5,7 @@ import 'colors.dart';
 class AivolveTheme {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: AivolveColors.backgroundDeep,
+    scaffoldBackgroundColor: Colors.transparent,
 
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
