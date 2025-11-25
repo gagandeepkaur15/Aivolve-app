@@ -8,8 +8,11 @@ class AivolveColors {
   static const neonBlue = Color(0xFF97E7F5);
   static const lightBlue = Color(0xFF009ED1);
 
+  static const neonPurple = Color(0xFFDF73FA);
+  static const neonViolet = Color(0xFF7385FA);
+
   static const textPrimary = Colors.white;
   static final textSecondary = Colors.grey[600];
 
-  static final fieldFill = Color(0xFF009ED1).withOpacity(0.25);
+  static final fieldFill = Colors.white.withOpacity(0.1);
 }

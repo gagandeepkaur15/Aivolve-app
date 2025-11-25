@@ -7,6 +7,7 @@ import 'package:aivolve/core/features/auth/presentation/screens/sign_up_screen.d
 import 'package:aivolve/core/features/home/presentation/screens/home_screen.dart';
 import 'package:aivolve/core/features/splash/presentation/screens/splash.dart';
 import 'package:aivolve/core/routing/app_routes.dart';
+import 'package:aivolve/core/widgets/main_scaffold.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -87,10 +88,17 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.splash, builder: (_, __) => const SplashScreen()),
       GoRoute(path: AppRoutes.login, builder: (_, __) => const LoginScreen()),
       GoRoute(path: AppRoutes.signUp, builder: (_, __) => const SignUpScreen()),
-      GoRoute(path: AppRoutes.home, builder: (_, __) => const HomeScreen()),
       GoRoute(
         path: AppRoutes.onboarding,
         builder: (_, __) => const AivolveOnboarding(),
+      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return MainScaffold(child: child);
+        },
+        routes: [
+          GoRoute(path: AppRoutes.home, builder: (_, __) => const HomeScreen()),
+        ],
       ),
     ],
   );
