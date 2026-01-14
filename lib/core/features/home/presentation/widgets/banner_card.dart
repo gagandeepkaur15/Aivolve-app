@@ -7,36 +7,45 @@ class BannerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 180,
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(24.sp),
-        border: Border.all(color: AivolveColors.neonBlue, width: 2.5),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: Colors.transparent,
-              padding: const EdgeInsets.all(20),
-              child: const SizedBox(),
+    return Stack(
+      clipBehavior: Clip.none, 
+      children: [
+        // Card
+        Container(
+          height: 120,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(24.sp),
+            border: Border.all(
+              color: AivolveColors.neonBlue,
+              width: 2.5,
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/home_bot.png"),
-                  fit: BoxFit.cover,
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: const SizedBox(),
                 ),
               ),
-            ),
+              const Spacer(), 
+            ],
           ),
-        ],
-      ),
+        ),
+
+        Positioned(
+          right: 12,
+          top: -20, 
+          child: Image.asset(
+            "assets/home_bot.png",
+            height: 140,
+            fit: BoxFit.contain,
+          ),
+        ),
+      ],
     );
   }
 }
+

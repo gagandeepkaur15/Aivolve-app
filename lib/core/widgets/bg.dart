@@ -11,11 +11,11 @@ class AivolveBackground extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          top: -150,
-          right: -150,
+          top: -200,
+          right: -200,
           child: Container(
-            width: 400,
-            height: 400,
+            width: 500,
+            height: 500,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
@@ -27,11 +27,11 @@ class AivolveBackground extends StatelessWidget {
         ),
 
         Positioned(
-          bottom: -150,
-          left: -150,
+          bottom: -200,
+          left: -200,
           child: Container(
-            width: 400,
-            height: 400,
+            width: 500,
+            height: 500,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
@@ -41,6 +41,7 @@ class AivolveBackground extends StatelessWidget {
             ),
           ),
         ),
+        
         child,
       ],
     );
