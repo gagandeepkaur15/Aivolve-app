@@ -5,7 +5,9 @@ import 'package:aivolve/core/features/auth/presentation/screens/login_screen.dar
 import 'package:aivolve/core/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:aivolve/core/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:aivolve/core/features/home/presentation/screens/home_screen.dart';
+import 'package:aivolve/core/features/progress/presentation/screens/progress_screen.dart';
 import 'package:aivolve/core/features/splash/presentation/screens/splash.dart';
+import 'package:aivolve/core/features/task/presentation/screens/task_screen.dart';
 import 'package:aivolve/core/routing/app_routes.dart';
 import 'package:aivolve/core/widgets/main_scaffold.dart';
 import 'package:flutter/foundation.dart';
@@ -98,6 +100,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         },
         routes: [
           GoRoute(path: AppRoutes.home, builder: (_, __) => const HomeScreen()),
+          GoRoute(path: AppRoutes.progress, builder: (_, __) => const ProgressScreen()),
+          GoRoute(path: AppRoutes.tasks, builder: (_, __) => const TaskScreen()),
         ],
       ),
     ],

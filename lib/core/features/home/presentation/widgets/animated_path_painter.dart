@@ -53,7 +53,7 @@ void paint(Canvas canvas, Size size) {
   canvas.drawPath(leftPath, glowPaint);
   canvas.drawPath(rightPath, glowPaint);
 
-  // 🔥 Two parallel lines
+  // Two parallel lines
   final strokePaint = Paint()
     ..shader = gradient
     ..style = PaintingStyle.stroke

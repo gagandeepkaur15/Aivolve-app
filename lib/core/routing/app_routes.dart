@@ -4,6 +4,8 @@ class AppRoutes {
   static const login = '/login';
   static const signUp = '/sign-up';
   static const home = '/home';
+  static const progress = '/progress';
+  static const tasks = '/tasks';
   static const analysis = '/analysis';
   static const journal = '/journal';
   static const morningSpark = '/morningSpark';

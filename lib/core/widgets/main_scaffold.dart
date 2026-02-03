@@ -15,7 +15,7 @@ class MainScaffold extends StatefulWidget {
 class _MainScaffoldState extends State<MainScaffold> {
   int selectedIndex = 0;
 
-  final tabs = ["/home", "/features", "/ai", "/goals", "/profile"];
+  final tabs = ["/home", "/progress", "/tasks", "/goals", "/profile"];
 
   @override
   Widget build(BuildContext context) {
